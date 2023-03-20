@@ -32,23 +32,34 @@ Y = K1 * X + B1, Y = K2 * X + B2;
 
 try /* Блок обработки исключений.*/
 {
-Console.WriteLine("При введении дробных чисел, используйте запятую.");
-Console.Write("Введите K1: ");
-double K1 = Convert.ToDouble(Console.ReadLine());
-Console.Write("Введите B1: ");
-double B1 = Convert.ToDouble(Console.ReadLine());
-Console.Write("Введите K2: ");
-double K2 = Convert.ToDouble(Console.ReadLine());
-Console.Write("Введите B2: ");
-double B2 = Convert.ToDouble(Console.ReadLine());
-  
-double X = (B2 - B1)/(K1 - K2);
-double Y = (K1 * B2 - K2 * B1)/(K1 - K2);
- 
-X = Math.Round(X, 3); /* Определяем, что после запятой, на экран будем выводить, только, три знака.*/
-Y = Math.Round(Y, 3);
- 
-Console.WriteLine($"Прямые пересекаются в точке: ({X}; {Y})");
+    Console.WriteLine("При введении дробных чисел, используйте запятую.");
+    Console.Write("Введите K1: ");
+    double K1 = Convert.ToDouble(Console.ReadLine());
+    Console.Write("Введите B1: ");
+    double B1 = Convert.ToDouble(Console.ReadLine());
+    Console.Write("Введите K2: ");
+    double K2 = Convert.ToDouble(Console.ReadLine());
+    Console.Write("Введите B2: ");
+    double B2 = Convert.ToDouble(Console.ReadLine());
+
+    double X = (B2 - B1) / (K1 - K2);
+    double Y = (K1 * B2 - K2 * B1) / (K1 - K2);
+
+    if ((K1 == K2) && (B1 == B2)) //Если все коэффициенты, введённые пользователем равны между собой, то...
+    {
+        Console.WriteLine($"Прямые совпадают.");
+        return; /* Возврат на исходную позицию, для того, чтобы следующий ответ не мог пересечся с этим.*/
+    }
+    if (K1 == K2) /* Если К1 и К2 равны , то...*/
+    {
+        Console.WriteLine($"Прямые не пересекаются, они параллельны.");
+    }
+    else // Иначе
+    {
+        X = Math.Round(X, 3); /* Определяем, что после запятой, на экран будем выводить,*/        
+        Y = Math.Round(Y, 3); /* только, три знака.*/
+        Console.WriteLine($"Прямые пересекаются в точке: ({X}; {Y})");
+    }
 }
 catch /* Окончание блока обработки исключений.*/
 {
